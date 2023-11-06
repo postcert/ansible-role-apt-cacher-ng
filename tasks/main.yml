@@ -19,11 +19,12 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     state: "{{ item.state | default('present') }}"
+    backup: true
   with_items:
-    - { regexp: "^Port:", line: "Port: {{ apt_cacher_ng_port }}" }
+    - { regexp: "^#\ Port:", line: "Port: {{ apt_cacher_ng_port }}" }
     - { regexp: "^CacheDir:\ ", line: "CacheDir: {{ apt_cacher_ng_cache_dir }}" }
     - { regexp: "^ExThreshold:\ ", line: "ExThreshold: {{ apt_cacher_ng_expiration_threshold }}" }
-    - { regexp: "^ExStartTradeOff:\ ", line: "ExStartTradeOff: {{ apt_cacher_ng_expiration_start_tradeoff }}" }
+    - { regexp: "^#\ ExStartTradeOff:\ ", line: "ExStartTradeOff: {{ apt_cacher_ng_expiration_start_tradeoff }}" }
   notify:
     - restart apt-cacher-ng
 
@@ -32,6 +33,7 @@
     dest: /etc/apt-cacher-ng/acng.conf
     insertafter: "#\ PassThroughPattern:"
     line: "PassThroughPattern: {{ apt_cacher_ng_passthrough_pattern }}"
+    backup: true
   when: apt_cacher_ng_passthrough_pattern is defined
   notify:
     - restart apt-cacher-ng

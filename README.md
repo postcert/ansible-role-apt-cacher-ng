@@ -10,7 +10,7 @@ Ubuntu or Debian
 * `apt_cacher_ng_cache_dir: /var/cache/apt-cacher-ng`
 * `apt_cacher_ng_setup_ufw: False` Add a ufw rule to allow apt-cacher-ng
 * `apt_cacher_ng_expiration_start_tradeoff: 500m` Size of local cache, expiration run is suppressed, until limited is surpassed
-* `apt_cacher_ng_experition_threshold: 4` Days before purging
+* `apt_cacher_ng_expiration_threshold: 4` Days before purging
 * `apt_cacher_ng_passthrough_pattern:` Not set by default
 
 ## Dependencies
