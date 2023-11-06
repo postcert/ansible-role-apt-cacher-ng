@@ -1,5 +1,4 @@
 # ansible-role-apt-cacher-ng
-[![Build Status](https://travis-ci.org/elnappo/ansible-role-apt-cacher-ng.svg?branch=master)](https://travis-ci.org/elnappo/ansible-role-apt-cacher-ng) [![Ansible Galaxy](https://img.shields.io/badge/galaxy-elnappo.apt--cacher--ng-blue.svg?style=flat)](https://galaxy.ansible.com/elnappo/apt-cacher-ng/)
 
 Simply installs and start apt-cacher-ng on boot. Get more informations about apt-cacher-ng at https://www.unix-ag.uni-kl.de/~bloch/acng/
 
@@ -9,7 +8,10 @@ Ubuntu or Debian
 ## Role Variables
 * `apt_cacher_ng_port: 3142`
 * `apt_cacher_ng_cache_dir: /var/cache/apt-cacher-ng`
-* `apt_cacher_ng_setup_ufw: True` Add a ufw rule to allow apt-cacher-ng
+* `apt_cacher_ng_setup_ufw: False` Add a ufw rule to allow apt-cacher-ng
+* `apt_cacher_ng_expiration_start_tradeoff: 500m` Size of local cache, expiration run is suppressed, until limited is surpassed
+* `apt_cacher_ng_experition_threshold: 4` Days before purging
+* `apt_cacher_ng_passthrough_pattern:` Not set by default
 
 ## Dependencies
 None.
@@ -20,7 +22,7 @@ None.
 - hosts: servers
   remote_user: root
   roles:
-   - { role: elnappo.apt_cacher_ng }
+   - { role: postcert.apt_cacher_ng }
 ```
 
 ## Client configuration
@@ -76,4 +78,5 @@ MIT
 
 ## Author Information
 
+postcert <postcert@gmail.com>
 elnappo <elnappo@nerdpol.io>

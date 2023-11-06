@@ -2,4 +2,6 @@
 # defaults file for apt-cacher-ng
 apt_cacher_ng_port: 3142
 apt_cacher_ng_cache_dir: /var/cache/apt-cacher-ng
-apt_cacher_ng_setup_ufw: true
+apt_cacher_ng_setup_ufw: false
+apt_cacher_ng_expiration_start_tradeoff: 500m # (k,K,m,M for Kb,KiB,Mb,MiB)
+apt_cacher_ng_expiration_threshold: 4 # days
